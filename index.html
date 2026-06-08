@@ -1,0 +1,832 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaylannisa Azzahra | Portfolio & Resume</title>
+    
+    <!-- TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CONFIG TAILWIND -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#E11D48',     /* Warna merah representasi seni & latar foto */
+                            darkRed: '#9F1239',
+                            dark: '#0B0F19',    /* Background gelap futuristik premium */
+                            card: '#1E293B',    /* Background kartu */
+                            accent: '#6366F1'   /* Indigo untuk melambangkan teknologi/TKJ */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- CUSTOM STYLE -->
+    <style>
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FF4B72 0%, #6366F1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-button {
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.7);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E11D48;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans selection:bg-brand-red selection:text-white overflow-x-hidden">
+
+    <!-- Efek Latar Belakang -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-red/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-brand-accent/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-rose-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <!-- Navigasi Utama -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="main-header">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-red to-brand-accent flex items-center justify-center font-mono font-bold text-lg text-white shadow-lg shadow-brand-red/20 group-hover:scale-105 transition-transform">
+                    KA
+                </div>
+                <span class="font-mono font-bold text-lg tracking-wider text-white group-hover:text-brand-red transition-colors">KHAYLANNISA.A</span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#profil" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-regular fa-user text-xs"></i> Profil</a>
+                <a href="#pendidikan" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-xs"></i> Pendidikan</a>
+                <a href="#pengalaman" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-briefcase text-xs"></i> Pengalaman</a>
+                <a href="#organisasi" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-users text-xs"></i> Organisasi</a>
+                <a href="#keahlian" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-screwdriver-wrench text-xs"></i> Keahlian</a>
+                <a href="#kontak" class="bg-brand-red hover:bg-brand-darkRed text-white px-4 py-2 rounded-lg transition-all shadow-md shadow-brand-red/20 font-semibold">Hubungi Saya</a>
+            </nav>
+
+            <button class="md:hidden text-white hover:text-brand-red focus:outline-none transition-colors" id="menu-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars-staggered text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div class="hidden md:hidden glass w-full absolute left-0 top-20 border-t border-slate-800 transition-all duration-300" id="mobile-menu">
+            <div class="px-6 py-6 space-y-4 flex flex-col text-slate-300 font-medium">
+                <a href="#profil" class="hover:text-brand-red transition-colors py-2 flex items-center gap-3" onclick="toggleMobileMenu()"><i class="fa-regular fa-user text-brand-red"></i> Profil</a>
+                <a href="#pendidikan" class="hover:text-brand-red transition-colors py-2 flex items-center gap-3" onclick="toggleMobileMenu()"><i class="fa-solid fa-graduation-cap text-brand-red"></i> Pendidikan</a>
+                <a href="#pengalaman" class="hover:text-brand-red transition-colors py-2 flex items-center gap-3" onclick="toggleMobileMenu()"><i class="fa-solid fa-briefcase text-brand-red"></i> Pengalaman Praktik</a>
+                <a href="#organisasi" class="hover:text-brand-red transition-colors py-2 flex items-center gap-3" onclick="toggleMobileMenu()"><i class="fa-solid fa-users text-brand-red"></i> Organisasi & Kepemimpinan</a>
+                <a href="#keahlian" class="hover:text-brand-red transition-colors py-2 flex items-center gap-3" onclick="toggleMobileMenu()"><i class="fa-solid fa-screwdriver-wrench text-brand-red"></i> Keahlian</a>
+                <a href="#kontak" class="bg-brand-red hover:bg-brand-darkRed text-white text-center py-3 rounded-xl transition-all font-semibold block" onclick="toggleMobileMenu()">Hubungi Saya</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 md:py-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-12 relative">
+        <div class="w-full md:w-3/5 text-center md:text-left space-y-6 z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs sm:text-sm font-semibold tracking-wide uppercase">
+                <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                Siswa TKJ & Ketua Divisi Musik
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                Halo, Saya <br class="hidden sm:inline">
+                <span class="text-gradient">Khaylannisa Azzahra</span>
+            </h1>
+
+            <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed">
+                Siswi TKJ di <strong class="text-white font-semibold">SMK Negeri 1 Batam</strong> yang berfokus pada administrasi jaringan dan sistem operasi. Sekaligus seorang pemimpin seni kreatif yang dipercaya mengepalai divisi musik.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+                <a href="#kontak" class="glow-button bg-gradient-to-r from-brand-red to-brand-accent hover:opacity-90 text-white font-bold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+                </a>
+                <a href="#pengalaman" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3.5 rounded-xl border border-slate-700 transition-all flex items-center gap-2">
+                    Lihat Pengalaman <i class="fa-solid fa-arrow-down text-sm"></i>
+                </a>
+            </div>
+
+            <!-- Sosial Cepat -->
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-6 text-xs sm:text-sm text-slate-400 pt-6">
+                <div class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-red"></i> khaylannisa969@gmail.com</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-accent"></i> 081222594636</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-red"></i> Batam, Kepri</div>
+            </div>
+        </div>
+
+        <!-- Frame Foto Profil -->
+        <div class="w-full md:w-2/5 flex justify-center items-center relative z-10">
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+                <div class="absolute -inset-4 rounded-full border-2 border-dashed border-slate-700 animate-[spin_40s_linear_infinite]"></div>
+                <div class="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-brand-red via-transparent to-brand-accent animate-pulse opacity-40"></div>
+                
+                <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-slate-800 bg-slate-900 flex items-center justify-center shadow-2xl">
+                    <div class="w-full h-full bg-gradient-to-b from-rose-700 to-rose-950 flex flex-col justify-end items-center relative">
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.2),transparent)]"></div>
+                        
+                        <!-- 
+                          Menggunakan nama file foto PNG transparan Anda secara otomatis 
+                        -->
+                        <img id="profile-img" 
+                             src="Khayla.jpg" 
+                             alt="Khaylannisa Azzahra" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="handleImageError(this)">
+                    </div>
+                </div>
+
+                <!-- Floating Badges -->
+                <div class="absolute -right-4 top-1/4 glass px-4 py-2 rounded-2xl flex items-center gap-2.5 shadow-lg animate-bounce duration-1000">
+                    <div class="w-8 h-8 rounded-lg bg-brand-red flex items-center justify-center text-white text-sm">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Musik</p>
+                        <p class="text-xs font-bold text-white">Ketua Divisi</p>
+                    </div>
+                </div>
+
+                <div class="absolute -left-6 bottom-1/4 glass px-4 py-2 rounded-2xl flex items-center gap-2.5 shadow-lg">
+                    <div class="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center text-white text-sm">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Spesialis</p>
+                        <p class="text-xs font-bold text-white">Jaringan & Server</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Profil -->
+    <section id="profil" class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-5 space-y-4">
+                <p class="text-brand-red font-mono font-bold uppercase tracking-widest text-sm">PROFIL SAYA</p>
+                <h2 class="text-3xl font-bold tracking-tight">Keseimbangan Antara <span class="text-gradient">Logika Jaringan</span> & <span class="text-gradient">Harmoni Nada</span>.</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brand-red to-brand-accent rounded"></div>
+            </div>
+            <div class="md:col-span-7 space-y-6 text-slate-300 leading-relaxed">
+                <p>
+                    Saya adalah siswi di <strong class="text-white">SMK Negeri 1 Batam</strong> jurusan <strong class="text-white">Teknik Komputer dan Jaringan (TKJ)</strong> yang memiliki minat mendalam di bidang infrastruktur jaringan komputer, perakitan perangkat keras, instalasi sistem operasi, dan administrasi sistem.
+                </p>
+                <p>
+                    Selain mematangkan kemampuan teknis, saya aktif melatih jiwa kepemimpinan dan manajerial sebagai <strong class="text-white">Ketua Divisi Musik Sendratasik</strong>. Karakter saya terbentuk menjadi pribadi yang disiplin, bertanggung jawab, mampu memimpin tim dengan kolaboratif, serta memiliki antusiasme belajar yang tinggi. Saya siap mendedikasikan kontribusi terbaik saya pada program Praktik Kerja Lapangan (PKL) maupun proyek profesional lainnya.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Pendidikan -->
+    <section id="pendidikan" class="py-20 bg-slate-900/50 border-y border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
+                <p class="text-brand-accent font-mono font-bold uppercase tracking-widest text-sm">RIWAYAT AKADEMIS</p>
+                <h2 class="text-3xl font-bold">Pendidikan Saat Ini</h2>
+                <div class="w-16 h-1 bg-brand-accent mx-auto rounded"></div>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="glass p-8 rounded-3xl relative overflow-hidden group hover:border-brand-accent/30 transition-all">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-full blur-2xl group-hover:bg-brand-accent/10 transition-all"></div>
+                    
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent text-2xl">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">SMK Negeri 1 Batam</h3>
+                                <p class="text-sm text-slate-400">Teknik Komputer dan Jaringan (TKJ)</p>
+                            </div>
+                        </div>
+                        <span class="px-4 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold self-start sm:self-center border border-slate-700">
+                            2024 - Sekarang
+                        </span>
+                    </div>
+
+                    <div class="space-y-4 text-slate-400 text-sm border-t border-slate-800/80 pt-6">
+                        <p class="leading-relaxed">
+                            Mempelajari keilmuan teknologi informasi terapan dengan fokus utama kurikulum pada:
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-300">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-accent text-xs"></i> Perancangan Arsitektur LAN</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-accent text-xs"></i> Administrasi Layanan Server</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-accent text-xs"></i> Manajemen Sistem Operasi</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-accent text-xs"></i> Perawatan Infrastruktur IT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Pengalaman -->
+    <section id="pengalaman" class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
+            <p class="text-brand-red font-mono font-bold uppercase tracking-widest text-sm">PENGALAMAN NYATA</p>
+            <h2 class="text-3xl font-bold">Praktik Laboratorium & Proyek</h2>
+            <div class="w-16 h-1 bg-brand-red mx-auto rounded"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative before:absolute before:top-2 before:bottom-2 before:left-4 sm:before:left-1/2 before:w-0.5 before:bg-slate-800">
+            <!-- Item 1: Konfigurasi Jaringan -->
+            <div class="relative pl-12 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 mb-12 group">
+                <div class="absolute left-4 sm:left-1/2 top-4 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark -translate-x-2 z-10 group-hover:scale-125 transition-transform"></div>
+                
+                <div class="sm:text-right sm:pr-8 flex flex-col items-start sm:items-end">
+                    <span class="px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-bold mb-3 inline-block">2024 - Sekarang</span>
+                    <h3 class="text-xl font-bold text-white">Praktik Konfigurasi Jaringan</h3>
+                    <p class="text-sm text-slate-400 font-medium">SMK Negeri 1 Batam</p>
+                </div>
+                <div class="mt-4 sm:mt-0 glass p-6 rounded-2xl group-hover:border-brand-accent/30 transition-all">
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-chevron-right text-brand-accent mt-1 shrink-0"></i>
+                            <span>Membuat, merancang, dan menghubungkan jaringan LAN (Local Area Network).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-chevron-right text-brand-accent mt-1 shrink-0"></i>
+                            <span>Melakukan perencanaan dan konfigurasi skema IP Address (IPv4 & Subnetting).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item 2: Server & Sistem Operasi -->
+            <div class="relative pl-12 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 group">
+                <div class="absolute left-4 sm:left-1/2 top-4 w-4 h-4 rounded-full bg-brand-red border-4 border-brand-dark -translate-x-2 z-10 group-hover:scale-125 transition-transform"></div>
+                
+                <div class="sm:order-2 sm:pl-8 flex flex-col items-start">
+                    <span class="px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold mb-3 inline-block">2024 - Sekarang</span>
+                    <h3 class="text-xl font-bold text-white">Praktik Server & Sistem Operasi</h3>
+                    <p class="text-sm text-slate-400 font-medium">SMK Negeri 1 Batam</p>
+                </div>
+                <div class="sm:order-1 mt-4 sm:mt-0 glass p-6 rounded-2xl group-hover:border-brand-red/30 transition-all">
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-chevron-right text-brand-red mt-1 shrink-0"></i>
+                            <span>Instalasi sistem operasi komputer berbasis GUI dan CLI (Windows & Linux).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-chevron-right text-brand-red mt-1 shrink-0"></i>
+                            <span>Konfigurasi dasar server esensial seperti Web Server dan Mail Server lokal.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-chevron-right text-brand-red mt-1 shrink-0"></i>
+                            <span>Mempelajari teknik dan implementasi routing statis dasar.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Organisasi -->
+    <section id="organisasi" class="py-20 bg-slate-900/50 border-y border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
+                <p class="text-brand-red font-mono font-bold uppercase tracking-widest text-sm">KEPEMIMPINAN & AKTIVITAS</p>
+                <h2 class="text-3xl font-bold">Organisasi & Seni</h2>
+                <div class="w-16 h-1 bg-brand-red mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Sendratasik (Ketua Divisi Musik) -->
+                <div class="glass p-8 rounded-3xl relative overflow-hidden group hover:border-brand-red/30 transition-all flex flex-col justify-between">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red/5 rounded-full blur-2xl group-hover:bg-brand-red/10 transition-all"></div>
+                    
+                    <div>
+                        <div class="flex items-center justify-between gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-brand-red/10 flex items-center justify-center text-brand-red text-2xl">
+                                <i class="fa-solid fa-guitar"></i>
+                            </div>
+                            <span class="px-4 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-xs font-bold">
+                                Jabatan Inti
+                            </span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-1">Sendratasik (Seni Drama, Tari, dan Musik)</h3>
+                        <p class="text-brand-red text-sm font-semibold mb-4">Ketua Divisi Musik (2024 - Sekarang)</p>
+                        
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Bertanggung jawab mengelola seluruh kegiatan musik, mengorganisasi latihan rutin kelompok seni, mengatur aransemen lagu untuk berbagai event sekolah, serta memimpin tim dalam kolaborasi kreatif demi melatih percaya diri dan disiplin anggota.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-slate-800/80 pt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium">Manajemen Tim</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium">Perencanaan Acara</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium">Aransemen Musik</span>
+                    </div>
+                </div>
+
+                <!-- PMR -->
+                <div class="glass p-8 rounded-3xl relative overflow-hidden group hover:border-brand-accent/30 transition-all flex flex-col justify-between">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-full blur-2xl group-hover:bg-brand-accent/10 transition-all"></div>
+                    
+                    <div>
+                        <div class="flex items-center justify-between gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent text-2xl">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <span class="px-4 py-1.5 rounded-full bg-slate-800 text-slate-400 text-xs font-semibold">
+                                Anggota
+                            </span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-1">Palang Merah Remaja (PMR)</h3>
+                        <p class="text-brand-accent text-sm font-semibold mb-4">Anggota PMR Aktif (2021 - 2024)</p>
+                        
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Aktif berpartisipasi dalam berbagai aksi sosial, penyuluhan kesehatan dasar, pertolongan pertama pada kecelakaan sekolah, serta berkolaborasi erat dalam kerja sama tim guna menjaga keselamatan lingkungan sekolah.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-slate-800/80 pt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium">Pertolongan Pertama</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium">Pengabdian Sosial</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium">Kerja Sama Tim</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playground Interaktif -->
+    <section class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
+            <p class="text-brand-accent font-mono font-bold uppercase tracking-widest text-sm">PLAYGROUND INTERAKTIF</p>
+            <h2 class="text-3xl font-bold">Coba Keahlian Saya</h2>
+            <div class="w-16 h-1 bg-brand-accent mx-auto rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Player Musik -->
+            <div class="glass p-8 rounded-3xl flex flex-col justify-between border border-slate-800 relative overflow-hidden group">
+                <div class="absolute top-3 right-4 flex items-center gap-1.5 text-xs text-brand-red font-mono">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping"></span>
+                    <span>ACTIVE PLAYER</span>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-compact-disc animate-spin text-brand-red text-xl"></i> 
+                        Player Lofi Ketua Musik
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-6">Dengarkan ketukan lofi santai selagi Anda membaca resume ini. Dibuat menggunakan sintesis audio digital instan!</p>
+                    
+                    <div class="h-16 flex items-end justify-center gap-1 bg-slate-950/60 rounded-xl p-4 mb-6 relative overflow-hidden">
+                        <div class="wave-bar w-1.5 bg-brand-red rounded-full" style="height: 10%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-red rounded-full" style="height: 25%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-accent rounded-full" style="height: 40%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-red rounded-full" style="height: 55%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-accent rounded-full" style="height: 70%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-red rounded-full" style="height: 85%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-accent rounded-full" style="height: 50%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-red rounded-full" style="height: 95%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-accent rounded-full" style="height: 60%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-red rounded-full" style="height: 40%;"></div>
+                        <div class="wave-bar w-1.5 bg-brand-accent rounded-full" style="height: 20%;"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between gap-4">
+                    <div class="text-xs text-slate-400">
+                        <span class="font-bold text-slate-200" id="track-status">Dipause</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="toggleAudio()" id="play-btn" class="w-12 h-12 rounded-full bg-brand-red hover:bg-brand-darkRed text-white flex items-center justify-center transition-all focus:outline-none shadow-md shadow-brand-red/20">
+                            <i class="fa-solid fa-play" id="play-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Simulator -->
+            <div class="glass p-8 rounded-3xl border border-slate-800 flex flex-col justify-between font-mono">
+                <div>
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <span class="text-xs text-slate-500">admin@khaylannisa:~</span>
+                    </div>
+                    
+                    <p class="text-xs text-emerald-400 mb-2"># Masukkan perintah ping ke server khaylannisa.xyz</p>
+                    
+                    <div id="terminal-screen" class="bg-slate-950/80 rounded-xl p-4 text-xs text-slate-300 h-28 overflow-y-auto mb-4 space-y-1">
+                        <div>Tulis perintah di bawah dan tekan "Kirim Ping"</div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="text" id="terminal-input" value="ping -c 4 khaylannisa.xyz" class="bg-slate-950/50 border border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-brand-accent w-full text-slate-200">
+                    <button onclick="runPing()" class="bg-brand-accent hover:bg-indigo-700 text-white text-xs px-4 py-2 rounded-lg font-bold transition-all">
+                        Kirim Ping
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Keahlian -->
+    <section id="keahlian" class="py-20 bg-slate-900/50 border-y border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
+                <p class="text-brand-accent font-mono font-bold uppercase tracking-widest text-sm">SKILLSET & ALAT</p>
+                <h2 class="text-3xl font-bold">Keahlian Utama</h2>
+                <div class="w-16 h-1 bg-brand-accent mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <!-- Skill 1 -->
+                <div class="glass p-6 rounded-2xl border border-slate-800/80 hover:border-brand-accent/20 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Kabel & Fiber Optik</h3>
+                    <p class="text-xs text-slate-400 mb-4">Sangat terbiasa melakukan crimping kabel LAN (RJ45) dan instalasi/pemeliharaan kabel Fiber Optik.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass p-6 rounded-2xl border border-slate-800/80 hover:border-brand-accent/20 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Konfigurasi IP & Router</h3>
+                    <p class="text-xs text-slate-400 mb-4">Terampil merancang subnetting IP, pembagian segmen jaringan, dan melakukan routing statis router.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass p-6 rounded-2xl border border-slate-800/80 hover:border-brand-accent/20 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Instalasi & Perawatan</h3>
+                    <p class="text-xs text-slate-400 mb-4">Ahli merakit komputer, instalasi berbagai sistem operasi (Windows/Linux), dan mengatasi masalah komputer.</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="glass p-6 rounded-2xl border border-slate-800/80 hover:border-brand-accent/20 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Microsoft Office</h3>
+                    <p class="text-xs text-slate-400 mb-4">Lancar menyusun dokumentasi teknis, pembuatan bagan, presentasi, dan administrasi perkantoran.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Kontak -->
+    <section id="kontak" class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch max-w-5xl mx-auto">
+            <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+                <div>
+                    <p class="text-brand-red font-mono font-bold uppercase tracking-widest text-sm mb-3">MARI BERKOLABORASI</p>
+                    <h2 class="text-3xl font-bold mb-4">Koneksikan Peluang Bersama Saya</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Tertarik bekerja sama untuk program magang (PKL), proyek instalasi jaringan, atau penampilan seni musik sekolah? Hubungi saya kapan pun!
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass p-4 rounded-xl flex items-center gap-4 hover:border-brand-red/30 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-brand-red/10 flex items-center justify-center text-brand-red shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Email Resmi</p>
+                            <a href="mailto:khaylannisa969@gmail.com" class="text-sm font-semibold text-white block truncate">khaylannisa969@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="glass p-4 rounded-xl flex items-center gap-4 hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Nomor Ponsel (WhatsApp)</p>
+                            <a href="tel:081222594636" class="text-sm font-semibold text-white block">081222594636</a>
+                        </div>
+                    </div>
+
+                    <div class="glass p-4 rounded-xl flex items-center gap-4 hover:border-brand-red/30 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-brand-red/10 flex items-center justify-center text-brand-red shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Wilayah Aktif</p>
+                            <p class="text-sm font-semibold text-white">Batam, Kepulauan Riau, Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="salinSemuaKontak()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2 border border-slate-700">
+                    <i class="fa-regular fa-copy"></i> Salin Semua Informasi Kontak
+                </button>
+            </div>
+
+            <div class="lg:col-span-7">
+                <form id="contact-form" onsubmit="handleFormKirim(event)" class="glass p-8 rounded-3xl space-y-6 flex flex-col justify-between h-full relative">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-white">Kirim Pesan Instan</h3>
+                        <div class="w-12 h-1 bg-brand-red rounded"></div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="space-y-2">
+                                <label for="form-name" class="text-xs text-slate-400 font-semibold">Nama Anda</label>
+                                <input type="text" id="form-name" required class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-red text-slate-100 transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="form-email" class="text-xs text-slate-400 font-semibold">Email / WhatsApp Kontak</label>
+                                <input type="text" id="form-email" required class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-red text-slate-100 transition-all">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="form-subject" class="text-xs text-slate-400 font-semibold">Subjek Hubungan</label>
+                            <select id="form-subject" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-red text-slate-100 transition-all">
+                                <option value="Kolaborasi Musik">Kolaborasi Musik</option>
+                                <option value="Pertunjukan / Kegiatan Seni Musik">Pertunjukan / Kegiatan Seni Musik</option>
+                                <option value="Diskusi Jaringan TKJ">Diskusi Jaringan TKJ</option>
+                                <option value="Tanya-Tanya Saja">Tanya-Tanya Saja</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="form-message" class="text-xs text-slate-400 font-semibold">Detail Pesan</label>
+                            <textarea id="form-message" rows="4" required class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-red text-slate-100 transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-red hover:bg-brand-darkRed text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg shadow-brand-red/10 flex items-center justify-center gap-2 mt-4">
+                        <i class="fa-solid fa-paper-plane"></i> Kirim Pesan Sekarang
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-center text-slate-500 text-xs sm:text-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-slate-900 pb-8">
+                <a href="#hero" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-red to-brand-accent flex items-center justify-center font-mono font-bold text-sm text-white shadow-lg">
+                        KA
+                    </div>
+                    <span class="font-mono font-bold tracking-wider text-white">KHAYLANNISA.A</span>
+                </a>
+                <p class="text-xs text-slate-400">Siswi Teknik Komputer dan Jaringan &amp; Seni Musik SMK Negeri 1 Batam.</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2026 Khaylannisa Azzahra. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-slate-400">
+                    <a href="mailto:khaylannisa969@gmail.com" class="hover:text-brand-red transition-colors text-lg" aria-label="Kirim Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="tel:081222594636" class="hover:text-brand-accent transition-colors text-lg" aria-label="Panggil Telepon"><i class="fa-solid fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifikasi -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass border border-emerald-500/30 text-emerald-400 px-5 py-4 rounded-2xl flex items-center gap-3 shadow-2xl transition-all translate-y-20 opacity-0 pointer-events-none">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        </div>
+        <div>
+            <p class="font-bold text-white text-xs">Pesan Berhasil Terkirim</p>
+            <p class="text-[10px] text-slate-400">Terima kasih, Khaylannisa akan merespons secepat mungkin.</p>
+        </div>
+    </div>
+
+    <!-- SCRIPT JAVASCRIPT -->
+    <script>
+        // Callback jika gambar gagal dimuat
+        function handleImageError(imgElement) {
+            imgElement.style.display = 'none';
+            const parent = imgElement.parentElement;
+            
+            const svgPlaceholder = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgPlaceholder.setAttribute("class", "w-4/5 h-4/5 text-slate-200 drop-shadow-xl");
+            svgPlaceholder.setAttribute("viewBox", "0 0 100 100");
+            svgPlaceholder.innerHTML = `
+                <circle cx="50" cy="45" r="38" fill="#DC2626"/>
+                <path d="M25 45C25 25 35 15 50 15C65 15 75 25 75 45C75 55 72 75 50 82C28 75 25 55 25 45Z" fill="#1E293B"/>
+                <path d="M35 48C35 38 42 35 50 35C58 35 65 38 65 48C65 58 58 65 50 65C42 65 35 58 35 48Z" fill="#FBCFE8"/>
+                <path d="M33 46C33 34 40 32 50 32C60 32 67 34 67 46C67 56 61 68 50 68C39 68 33 56 33 46Z" fill="#0F172A"/>
+                <circle cx="44" cy="46" r="2.5" fill="#1E293B"/>
+                <circle cx="56" cy="46" r="2.5" fill="#1E293B"/>
+                <path d="M47 54C47 54 48.5 56 50 56C51.5 56 53 54 53 54" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 85C22 72 32 70 42 74L50 82L58 74C68 70 78 72 78 85V100H22V85Z" fill="#020617"/>
+                <path d="M45 74L50 82L55 74V85H45V74Z" fill="#FFFFFF"/>
+                <path d="M48 78L50 85L52 78L51 90H49L48 78Z" fill="#0F172A"/>
+            `;
+            parent.appendChild(svgPlaceholder);
+        }
+
+        let audioCtx;
+        let isPlaying = false;
+        let oscillatorLFO;
+        let oscillatorSynth;
+        let gainNode;
+        let visualizerInterval;
+
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('glass', 'shadow-xl');
+                header.classList.remove('h-20');
+                header.classList.add('h-16');
+            } else {
+                header.classList.remove('glass', 'shadow-xl');
+                header.classList.add('h-20');
+                header.classList.remove('h-16');
+            }
+        });
+
+        function createLofiSynth() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            gainNode = audioCtx.createGain();
+            gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+
+            oscillatorSynth = audioCtx.createOscillator();
+            oscillatorSynth.type = 'triangle';
+            oscillatorSynth.frequency.setValueAtTime(146.83, audioCtx.currentTime);
+
+            oscillatorLFO = audioCtx.createOscillator();
+            oscillatorLFO.type = 'sine';
+            oscillatorLFO.frequency.setValueAtTime(2.5, audioCtx.currentTime);
+            
+            let lfoGain = audioCtx.createGain();
+            lfoGain.gain.setValueAtTime(3, audioCtx.currentTime);
+
+            oscillatorLFO.connect(lfoGain);
+            lfoGain.connect(oscillatorSynth.frequency);
+
+            oscillatorSynth.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+        }
+
+        function toggleAudio() {
+            const playIcon = document.getElementById('play-icon');
+            const trackStatus = document.getElementById('track-status');
+            const bars = document.querySelectorAll('.wave-bar');
+
+            if (!isPlaying) {
+                if (!audioCtx) {
+                    createLofiSynth();
+                }
+                
+                audioCtx.resume();
+                oscillatorSynth.start();
+                oscillatorLFO.start();
+                
+                playIcon.className = 'fa-solid fa-pause';
+                trackStatus.textContent = "Memutar Lofi Pad (Synth Digital)";
+                isPlaying = true;
+
+                visualizerInterval = setInterval(() => {
+                    bars.forEach(bar => {
+                        const randomHeight = Math.floor(Math.random() * 85) + 15;
+                        bar.style.height = `${randomHeight}%`;
+                    });
+                }, 120);
+
+            } else {
+                if (audioCtx) {
+                    oscillatorSynth.stop();
+                    oscillatorLFO.stop();
+                    audioCtx.close();
+                    audioCtx = null;
+                }
+                
+                playIcon.className = 'fa-solid fa-play';
+                trackStatus.textContent = "Dipause";
+                isPlaying = false;
+                clearInterval(visualizerInterval);
+
+                bars.forEach((bar, index) => {
+                    bar.style.height = `${15 + (index * 4)}%`;
+                });
+            }
+        }
+
+        function runPing() {
+            const input = document.getElementById('terminal-input').value;
+            const screen = document.getElementById('terminal-screen');
+            
+            screen.innerHTML = `<div>&gt; ${input}</div><div class="text-slate-500 animate-pulse">Menghubungkan ke server khaylannisa.xyz...</div>`;
+            
+            setTimeout(() => {
+                screen.innerHTML = `
+                    <div>&gt; ${input}</div>
+                    <div class="text-slate-400">PING khaylannisa.xyz (192.168.10.1) 56(84) bytes of data.</div>
+                    <div class="text-emerald-400">64 bytes from 192.168.10.1: icmp_seq=1 ttl=64 time=1.24 ms</div>
+                    <div class="text-emerald-400">64 bytes from 192.168.10.1: icmp_seq=2 ttl=64 time=1.11 ms</div>
+                    <div class="text-rose-400 font-bold">[!] Ketua Musik Sedang Memberikan Harmoni Sempurna [!]</div>
+                    <div class="text-slate-400">--- khaylannisa.xyz ping statistics ---</div>
+                    <div class="text-slate-300">2 packets transmitted, 2 received, 0% packet loss, time 1002ms</div>
+                    <div class="text-slate-200 font-bold">rtt min/avg/max/mdev = 1.110/1.175/1.240/0.065 ms</div>
+                `;
+            }, 1000);
+        }
+
+        function handleFormKirim(event) {
+            event.preventDefault();
+            
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            document.getElementById('contact-form').reset();
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 5000);
+        }
+
+        function salinSemuaKontak() {
+            const dataKontak = "Nama: Khaylannisa Azzahra\nSekolah: SMK Negeri 1 Batam (TKJ)\nEmail: khaylannisa969@gmail.com\nTelepon: 081222594636\nPosisi: Siswa TKJ & Ketua Divisi Musik Sendratasik";
+            
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = dataKontak;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                const terminalScreen = document.getElementById('terminal-screen');
+                terminalScreen.innerHTML = `
+                    <div class="text-emerald-400 font-bold">[Kopas Berhasil]</div>
+                    <div class="text-slate-400">Seluruh kontak Khaylannisa berhasil disalin ke clipboard Anda!</div>
+                `;
+            } catch (err) {
+                console.error("Gagal menyalin: ", err);
+            }
+            
+            document.body.removeChild(tempTextArea);
+        }
+    </script>
+</body>
+</html>
+
+```
